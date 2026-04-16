@@ -6,6 +6,9 @@ on:
     paths:
       - 'tokens.json' # Solo se ejecuta si cambia este archivo
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
