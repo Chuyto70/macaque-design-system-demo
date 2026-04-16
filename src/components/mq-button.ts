@@ -13,7 +13,7 @@ export class MqButton extends LitElement {
     
     button {
       /* USAMOS LOS TOKENS GENERADOS POR STYLE DICTIONARY */
-      background-color: var(--brand-primary, #000); 
+      background-color: var(--global-brand-primary, #000); 
       color: white;
       padding: 12px 24px;
       border: none;
@@ -31,8 +31,8 @@ export class MqButton extends LitElement {
     /* Ejemplo de cómo usar otro token para una variante */
     .secondary {
       background-color: transparent;
-      border: 2px solid var(--brand-primary);
-      color: var(--brand-primary);
+      border: 2px solid var(--global-brand-primary);
+      color: var(--global-brand-primary);
     }
   `;
 

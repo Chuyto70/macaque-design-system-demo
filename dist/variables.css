@@ -1,8 +1,5 @@
-/**
- * Do not edit directly
- * Generated on Thu, 16 Apr 2026 12:44:59 GMT
- */
-
 :root {
-
+  --global-brand-primary: #2563eb;
+  --global-brand-secondary: #ff0000;
+  --global-brand-test: #000000;
 }
