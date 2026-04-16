@@ -1,8 +1,12 @@
 {
   "devDependencies": {
-    "style-dictionary": "^3.8.0"
+    "style-dictionary": "^3.8.0",
+    "vite": "^8.0.8"
   },
   "scripts": {
     "build": "style-dictionary build"
+  },
+  "dependencies": {
+    "lit": "^3.3.2"
   }
 }

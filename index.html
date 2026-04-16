@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Macaque UI Demo</title>
+    
+    <link rel="stylesheet" href="./dist/variables.css">
+    
+    <style>
+        body { font-family: sans-serif; padding: 40px; }
+        .container { display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Macaque Design System Demo</h1>
+    <p>Este botón usa los tokens de Figma y es un Web Component puro.</p>
+
+    <div class="container">
+        <mq-button>Botón Primario</mq-button>
+        
+        <mq-button variant="secondary">Botón Secundario</mq-button>
+    </div>
+
+    <script type="module" src="./src/components/mq-button.ts"></script>
+</body>
+</html>
