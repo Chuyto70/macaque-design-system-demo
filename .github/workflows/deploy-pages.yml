@@ -69,8 +69,8 @@ jobs:
       - name: Resumen de release
         run: |
           printf '## Release publicada\n\n' >> "$GITHUB_STEP_SUMMARY"
-          printf '- Tag: `%s`\n' "${{ steps.release_tag.outputs.tag_name }}" >> "$GITHUB_STEP_SUMMARY"
-          printf '- Commit: `%s`\n' "$(git rev-parse --short HEAD)" >> "$GITHUB_STEP_SUMMARY"
+          printf -- '- Tag: `%s`\n' "${{ steps.release_tag.outputs.tag_name }}" >> "$GITHUB_STEP_SUMMARY"
+          printf -- '- Commit: `%s`\n' "$(git rev-parse --short HEAD)" >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     environment:
