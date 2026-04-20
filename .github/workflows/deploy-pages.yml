@@ -47,6 +47,15 @@ jobs:
           git commit -m "style: actualizar variables css desde figma"
           git push
 
+      - name: Crear tag de release
+        id: release_tag
+        run: |
+          CURRENT_SHA="$(git rev-parse --short HEAD)"
+          TAG_NAME="release-$(date -u +'%Y%m%d-%H%M%S')-${CURRENT_SHA}"
+          git tag -a "$TAG_NAME" -m "Release automatica $TAG_NAME"
+          git push origin "$TAG_NAME"
+          printf 'tag_name=%s\n' "$TAG_NAME" >> "$GITHUB_OUTPUT"
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
         with:
@@ -56,6 +65,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: site-dist
+
+      - name: Resumen de release
+        run: |
+          printf '## Release publicada\n\n' >> "$GITHUB_STEP_SUMMARY"
+          printf '- Tag: `%s`\n' "${{ steps.release_tag.outputs.tag_name }}" >> "$GITHUB_STEP_SUMMARY"
+          printf '- Commit: `%s`\n' "$(git rev-parse --short HEAD)" >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     environment:
