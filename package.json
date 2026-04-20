@@ -4,7 +4,10 @@
     "vite": "^8.0.8"
   },
   "scripts": {
-    "build": "style-dictionary build"
+    "build:tokens": "style-dictionary build",
+    "build:site": "vite build",
+    "build": "npm run build:tokens && npm run build:site",
+    "dev": "vite"
   },
   "dependencies": {
     "lit": "^3.3.2"
