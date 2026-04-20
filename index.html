@@ -3,23 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <title>Macaque UI Demo</title>
-    
+
     <link rel="stylesheet" href="./dist/variables.css">
-    
+
     <style>
-        body { font-family: sans-serif; padding: 40px; }
-        .container { display: flex; gap: 10px; }
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #fff8e8;
+            color: #1d1d1d;
+        }
+
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: var(--global-brand-primary, #000);
+            color: #111;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1;
+        }
+
+        .lead {
+            max-width: 720px;
+            margin: 0;
+            font-size: calc(var(--global-text-lg, 18) * 1px);
+            line-height: 1.6;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 24px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .token-text {
+            font-size: calc(var(--global-text-lg, 18) * 1px);
+        }
+
+        .primary-surface {
+            background: var(--global-brand-primary, #000);
+            color: #111;
+        }
+
+        .secondary-surface {
+            background: var(--global-brand-secondary, #666);
+            color: white;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .token-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .token-chip {
+            padding: 16px;
+            border-radius: 16px;
+            background: #fff;
+            border-left: 6px solid var(--global-brand-primary, #000);
+        }
+
+        .token-chip strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .token-value {
+            font-size: calc(var(--global-text-lg, 18) * 1px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Macaque Design System Demo</h1>
-    <p>Este botón usa los tokens de Figma y es un Web Component puro.</p>
+    <main>
+        <span class="eyebrow">Demo viva de tokens</span>
+        <h1>Macaque Design System Demo</h1>
+        <p class="lead">
+            Esta pantalla usa variables globales generadas desde Figma. Cuando cambian los tokens,
+            cambian al mismo tiempo el color primario, el color secundario y el tamano de texto sin tocar codigo.
+        </p>
 
-    <div class="container">
-        <mq-button>Botón Primario</mq-button>
-        
-        <mq-button variant="secondary">Botón Secundario</mq-button>
-    </div>
+        <div class="button-row">
+            <mq-button>Boton primario</mq-button>
+            <mq-button variant="secondary">Boton secundario</mq-button>
+        </div>
+
+        <section class="demo-grid">
+            <article class="card primary-surface">
+                <h2>Color primario global</h2>
+                <p>
+                    Esta tarjeta usa <code>--global-brand-primary</code> para demostrar como una superficie completa
+                    puede heredar la nueva tematica del sistema.
+                </p>
+            </article>
+
+            <article class="card secondary-surface">
+                <h2>Color secundario global</h2>
+                <p>
+                    Esta variante usa <code>--global-brand-secondary</code>, igual que el borde y texto del boton secundario.
+                </p>
+            </article>
+
+            <article class="card">
+                <h2>Tipografia global</h2>
+                <p class="token-text">
+                    Este texto usa <code>--global-text-lg</code> como font-size, para que el cambio de escala se vea en toda la interfaz.
+                </p>
+            </article>
+        </section>
+
+        <section class="token-list">
+            <article class="token-chip">
+                <strong>Primary</strong>
+                <span>Usado en boton primario y badge superior.</span>
+            </article>
+
+            <article class="token-chip" style="border-left-color: var(--global-brand-secondary, #666);">
+                <strong>Secondary</strong>
+                <span>Usado en boton secundario y tarjeta de apoyo.</span>
+            </article>
+
+            <article class="token-chip">
+                <strong>Text LG</strong>
+                <span class="token-value">Este valor escala copys y botones.</span>
+            </article>
+        </section>
+    </main>
 
     <script type="module" src="./src/components/mq-button.ts"></script>
 </body>
