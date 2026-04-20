@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'dist/variables.css'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,6 +23,8 @@ jobs:
     steps:
       - name: Checkout del codigo
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
@@ -33,6 +37,15 @@ jobs:
 
       - name: Generar sitio estatico
         run: npm run build
+
+      - name: Guardar tokens generados en el repo
+        run: |
+          git config user.name "Macaque Bot"
+          git config user.email "bot@macaque.com"
+          git add dist/variables.css
+          git diff --cached --quiet && exit 0
+          git commit -m "style: actualizar variables css desde figma"
+          git push
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
